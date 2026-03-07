@@ -1,68 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Simulador Financeiro Semanal</title>
 </head>
+
 <body>
 
-<h1>Qual seria sua economia com perdas? (Semanal)</h1>
-<br>
+    <h1>Qual seria sua economia com perdas? (Semanal)</h1>
+    <br>
 
-<label>
-<b>Insira quantas toneladas de tilápia exportada anualmente:
-<input type="text" id="id_peso_total" placeholder="Digite aqui"> Ton
-</b>
-</label>
+    <label>
+        <b>Quantas toneladas de tilápia exportada durante o ano:
+            <input type="text" id="id_pesototal" placeholder="Digite aqui"> (Em toneladas)
+        </b>
+    </label>
 
-<br><br>
+    <br><br>
 
-<label>
-<b>Insira o preço médio do Kg de tilápia:
-$<input type="text" id="id_preco_medio_kg" placeholder="Digite aqui"> USD
-</b>
-</label>
+    <label>
+        <b>Insira o preço médio da tilápia em Kg:
+            $<input type="text" id="id_precomedio_kg" placeholder="Digite aqui"> (Em dólares)
+        </b>
+    </label>
 
-<br><br>
+    <br><br>
 
-<button onclick="calcular_simulacao()">
-<h3>Simular Economia Semanal</h3>
-</button>
+    <button onclick="calcular_simulacao()">
+        <h3>Simular Economia Semanal</h3>
+    </button>
 
-<br><br>
+    <br><br>
 
-<p id="msg_prejuizo"></p>
-<p id="msg_economia"></p>
+    <p id="prejuizo"></p>
+    <p id="economia"></p>
 
-<script>
+    <script>
 
-function calcular_simulacao(){
+        function calcular_simulacao() {
 
-    let peso_total = Number(id_peso_total.value);
-    let preco_medio_kg = Number(id_preco_medio_kg.value);
+            let pesototal = Number(id_pesototal.value);
+            let preco_mediokg = Number(id_precomedio_kg.value);
 
-    let peso_total_kg = peso_total * 1000;
-    let preco_medio_total = peso_total_kg * preco_medio_kg;
+            let pesototal_kg = pesototal * 1000;
+            let preco_mediototal = pesototal_kg * preco_mediokg;
 
-    
-    let valor_total_prejuizo_anual = preco_medio_total * 0.09;
 
-    // Convertendo para semanal (divide por 52 semanas)
-    let valor_prejuizo_semanal = valor_total_prejuizo_anual / 52;
+            let prejuizo_anual = preco_mediototal * 0.09;
 
-    let valor_minimo_economia = valor_prejuizo_semanal * 0.15;
-    let valor_maximo_economia = valor_prejuizo_semanal * 0.23;
+            // Convertendo para semanal (divide por 52 semanas)
+            let valor_prejuizo_semanal = prejuizo_anual / 52;
 
-    msg_prejuizo.innerHTML = 
-    `O prejuízo semanal é de <span style="color:red">$ ${valor_prejuizo_semanal.toFixed(2)} USD</span>`;
+            let minimo_economia = valor_prejuizo_semanal * 0.15;
+            let maximo_economia = valor_prejuizo_semanal * 0.23;
 
-    msg_economia.innerHTML = 
-    `A economia semanal será de <span style="color:green">$ ${valor_minimo_economia.toFixed(2)} USD</span>
-     até <span style="color:green">$ ${valor_maximo_economia.toFixed(2)} USD</span>`;
+            prejuizo.innerHTML =`Prejuízo anual: <span style="color:red">$ ${prejuizo_anual.toFixed(2)}</span><br>
+            semanal: <span style="color:red">$ ${valor_prejuizo_semanal.toFixed(2)}</span>`;
 
-}
+            
+            economia.innerHTML =`A economia semanal será de <span style="color:green">$ ${minimo_economia.toFixed(2)} dólares</span>
+                 até <span style="color:green">$ ${maximo_economia.toFixed(2)} dólares</span>`;
 
-</script>
+        }
+
+    </script>
 
 </body>
+
 </html>
