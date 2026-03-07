@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+<span style="color: darkred;"></span>
+<h1>Simulador Financeiro</h1>
+<br>
+
+<label>Quer ver quanto podemos economizar para sua empresa?</label>
+<br><br>
+
+<label for="ipt_peso_toneladas">Digite quantas toneladas sua empresa exporta por ano: <input type="text" id="ipt_peso_toneladas" placeholder="Digite em toneladas">T</label>
+<br>
+
+<label for="ipt_preco_kg">Digite o valor comercial do Kg da tilápia atualmente: $<input type="text" id="ipt_preco_kg" placeholder="Digite o valor em dólar">USD</label>
+<br>
+
+<button onclick="simulacao()"><h5>Fazer Simulação</h5></button>
+<br><br>
+
+<div id="mensagem_simulador"></div>
+
+</body>
+
+<script>
+
+function simulacao(){
+    let peso_toneladas = Number (ipt_peso_toneladas.value);
+    let preco_kg = Number (ipt_preco_kg.value);
+    let custo_projeto = 100000
+
+    let perda_peso_toneladas = peso_toneladas * 0.09;
+    let perda_valor = (perda_peso_toneladas * 1000) * preco_kg;
+
+    let reducao_perda_valor_minimo = perda_valor * 0.15;
+    let reducao_perda_valor_maximo = perda_valor * 0.23;
+
+    let retorno_valor_tempo = custo_projeto / reducao_perda_valor_minimo
+
+
+    mensagem_simulador.innerHTML = `Sua empresa está perdendo <span style="color: red;">$${perda_valor.toFixed(2)}</span> de dólares, e  uma redução da carga de <span style="color: red;">${perda_peso_toneladas} Toneladas</span> na entrega.
+    <br>Nosso projeto diminui essa perda em <span style="color: green;">$${reducao_perda_valor_minimo.toFixed(2)}</span> a <span style="color: green;">$${reducao_perda_valor_maximo.toFixed(2)}</span>
+    <br>Nosso projeto se pagará em até <b>${retorno_valor_tempo.toFixed(1)} anos.</b>`
+}
+
+</script>
+
+</html>
